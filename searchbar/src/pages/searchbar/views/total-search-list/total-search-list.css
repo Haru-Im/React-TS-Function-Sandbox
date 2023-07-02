@@ -1,0 +1,13 @@
+.searchCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  padding: 1em;
+  border-bottom: 1px solid #ddd;
+
+  &:hover {
+    background-color: #f6f6f6;
+  }
+}
