@@ -10,8 +10,6 @@ export const Title = styled.div`
 
   padding: 15px;
   box-sizing: border-box;
-
-  background-color: orange;
 `;
 
 export const TitleText = styled.p`

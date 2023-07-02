@@ -1,4 +1,10 @@
 import { ChangeEvent, FC, KeyboardEvent } from "react";
+import {
+  Input,
+  SearchBarContainer,
+  InputIcon,
+  InputContainer,
+} from "./search-bar.style";
 
 type ISearchBarViewProps = {
   handleInputValueChange: (text: string) => void;
@@ -15,18 +21,19 @@ export const SearchBarView: FC<ISearchBarViewProps> = ({
   };
 
   return (
-    <input
-      onKeyDown={(event: KeyboardEvent) => {
-        if (event.key === "Enter") {
-          handleSubmit(event);
-        }
-      }}
-      style={{
-        flexGrow: 1,
-        padding: "0.5em",
-        border: "1px solid #ddd",
-      }}
-      onChange={handleChange}
-    />
+    <SearchBarContainer>
+      <InputContainer>
+        <Input
+          onKeyDown={(event: KeyboardEvent) => {
+            if (event.key === "Enter") {
+              handleSubmit(event);
+            }
+          }}
+          onChange={handleChange}
+          placeholder="search..."
+        />
+        <InputIcon />
+      </InputContainer>
+    </SearchBarContainer>
   );
 };
