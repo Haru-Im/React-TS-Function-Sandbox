@@ -5,6 +5,8 @@ import {
   InputIcon,
   InputContainer,
 } from "./search-bar.style";
+import { useRecoilValue } from "recoil";
+import { $autoCompleteWords } from "../../searchbar.state";
 
 type ISearchBarViewProps = {
   onInputValueChange: (text: string) => void;
@@ -15,6 +17,10 @@ export const SearchBarView: FC<ISearchBarViewProps> = ({
   handleSubmit,
   onInputValueChange,
 }) => {
+  const test = useRecoilValue($autoCompleteWords);
+
+  console.log(test);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
     onInputValueChange(text);

@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent } from "react";
+import { FC } from "react";
 import { ESearchCategories, ISearchResult } from "../../../../types";
 import "./auto-complete-list.css";
 import { useRecoilValue } from "recoil";
