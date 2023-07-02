@@ -7,17 +7,17 @@ import {
 } from "./search-bar.style";
 
 type ISearchBarViewProps = {
-  handleInputValueChange: (text: string) => void;
+  onInputValueChange: (text: string) => void;
   handleSubmit: (e: KeyboardEvent) => void;
 };
 
 export const SearchBarView: FC<ISearchBarViewProps> = ({
   handleSubmit,
-  handleInputValueChange,
+  onInputValueChange,
 }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
-    handleInputValueChange(text);
+    onInputValueChange(text);
   };
 
   return (

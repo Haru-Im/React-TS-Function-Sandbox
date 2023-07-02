@@ -1,19 +1,19 @@
 import { FC, KeyboardEvent } from "react";
 import { ESearchCategories, ISearchResult } from "../../../../types";
 import "./total-search-list.css";
+import { useRecoilValue } from "recoil";
+import { $searchInput } from "../../searchbar.state";
 
 type ISearchListViewProps = {
   searchResult: ISearchResult[];
-  handleInputValueChange: (text: string) => void;
-  isInputEmpty: boolean;
-  handleSubmit: (e: KeyboardEvent) => void;
-  searchInput: string;
 };
 
 export const TotalSearchListView: FC<ISearchListViewProps> = ({
   searchResult,
-  isInputEmpty,
 }) => {
+  const searchInput = useRecoilValue($searchInput);
+  const isInputEmpty = searchInput.trim().length === 0;
+
   return (
     <div
       style={{

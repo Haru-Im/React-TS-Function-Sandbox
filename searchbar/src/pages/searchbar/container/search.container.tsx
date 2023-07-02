@@ -8,18 +8,14 @@ import {
   SearchBarView,
 } from "../views";
 import { useSearchData } from "./hooks";
+import { useSearchInput } from "./hooks/search-input";
 type ISearchContainerProps = {};
 
 export const SearchContainer: FC<ISearchContainerProps> = () => {
-  const {
-    searchResult,
-    handleInputValueChange,
-    isInputEmpty,
-    handleCategoryChange,
-    isSearched,
-    handleSubmit,
-    searchInput,
-  } = useSearchData();
+  const { searchResult, handleCategoryChange, isSearched, handleSubmit } =
+    useSearchData();
+
+  const { debouncedSetSearchInput } = useSearchInput();
 
   return (
     <SearchLayout>
@@ -27,24 +23,12 @@ export const SearchContainer: FC<ISearchContainerProps> = () => {
       <TitleView />
       <SearchBarView
         handleSubmit={handleSubmit}
-        handleInputValueChange={handleInputValueChange}
+        onInputValueChange={debouncedSetSearchInput}
       />
       {isSearched ? (
-        <TotalSearchListView
-          handleSubmit={handleSubmit}
-          searchResult={searchResult}
-          handleInputValueChange={handleInputValueChange}
-          isInputEmpty={isInputEmpty}
-          searchInput={searchInput}
-        />
+        <TotalSearchListView searchResult={searchResult} />
       ) : (
-        <AutoCompleteListView
-          handleSubmit={handleSubmit}
-          searchResult={searchResult}
-          handleInputValueChange={handleInputValueChange}
-          isInputEmpty={isInputEmpty}
-          searchInput={searchInput}
-        />
+        <AutoCompleteListView searchResult={searchResult} />
       )}
     </SearchLayout>
   );

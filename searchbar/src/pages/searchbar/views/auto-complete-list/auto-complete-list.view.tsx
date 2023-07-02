@@ -1,22 +1,19 @@
 import { FC, KeyboardEvent } from "react";
 import { ESearchCategories, ISearchResult } from "../../../../types";
 import "./auto-complete-list.css";
+import { useRecoilValue } from "recoil";
+import { $searchInput } from "../../searchbar.state";
 
 type ISearchListViewProps = {
   searchResult: ISearchResult[];
-  handleInputValueChange: (text: string) => void;
-  isInputEmpty: boolean;
-  handleSubmit: (e: KeyboardEvent) => void;
-  searchInput: string;
 };
 
 export const AutoCompleteListView: FC<ISearchListViewProps> = ({
   searchResult,
-  handleInputValueChange,
-  isInputEmpty,
-  handleSubmit,
-  searchInput,
 }) => {
+  const searchInput = useRecoilValue($searchInput);
+  const isInputEmpty = searchInput.trim().length === 0;
+
   return (
     <div
       style={{

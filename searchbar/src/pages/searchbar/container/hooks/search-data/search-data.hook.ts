@@ -1,19 +1,19 @@
 import axios from "axios";
-import { debounce, toLower } from "lodash";
-import { FormEvent, KeyboardEvent, useEffect, useState } from "react";
+import { toLower } from "lodash";
+import { KeyboardEvent, useEffect, useState } from "react";
 import { ESearchCategories, ISearchResult } from "../../../../../types";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { $searchInput } from "../../../searchbar.state";
 
 export const useSearchData = () => {
   const [searchCategory, setSearchCategory] = useState<ESearchCategories>(
     ESearchCategories.VCLIP
   );
-  const [searchInput, setSearchInput] = useState<string>("");
+
   const [searchResult, setSearchResult] = useState<ISearchResult[]>([]);
   const [isSearched, setIsSearched] = useState<boolean>(false);
 
-  // console.log(searchInput, isSearched);
-
-  const isInputEmpty = searchInput.trim().length === 0;
+  const searchInput = useRecoilValue($searchInput);
 
   // axios 인스턴스 생성
   const Kakao = axios.create({
@@ -50,11 +50,6 @@ export const useSearchData = () => {
     });
   };
 
-  // debounce 처리
-  const handleInputValueChange = debounce((text: string) => {
-    setSearchInput(text);
-  }, 300);
-
   // category state 저장
   const handleCategoryChange = (category: ESearchCategories) => {
     setSearchCategory(category);
@@ -62,7 +57,6 @@ export const useSearchData = () => {
 
   // 검색 완료했을 때 (submit)
   const handleSubmit = (e: KeyboardEvent) => {
-    console.log("submit");
     e.preventDefault();
     setIsSearched(true);
   };
@@ -76,11 +70,8 @@ export const useSearchData = () => {
 
   return {
     searchResult,
-    handleInputValueChange,
-    isInputEmpty,
     handleCategoryChange,
     isSearched,
     handleSubmit,
-    searchInput,
   };
 };
