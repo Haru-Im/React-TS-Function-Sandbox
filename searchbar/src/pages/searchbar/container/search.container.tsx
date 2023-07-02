@@ -5,9 +5,9 @@ import {
   AutoCompleteListView,
   TitleView,
   TotalSearchListView,
+  SearchBarView,
 } from "../views";
 import { useSearchData } from "./hooks";
-import { SearchBarComponent } from "../components";
 type ISearchContainerProps = {};
 
 export const SearchContainer: FC<ISearchContainerProps> = () => {
@@ -25,9 +25,9 @@ export const SearchContainer: FC<ISearchContainerProps> = () => {
     <SearchLayout>
       <HeaderView onChangeCategory={handleCategoryChange} />
       <TitleView />
-      <SearchBarComponent
+      <SearchBarView
         handleSubmit={handleSubmit}
-        onChangeInputValue={handleInputValueChange}
+        handleInputValueChange={handleInputValueChange}
       />
       {isSearched ? (
         <TotalSearchListView
