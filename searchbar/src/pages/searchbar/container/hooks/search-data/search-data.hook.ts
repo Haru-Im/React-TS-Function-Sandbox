@@ -1,19 +1,16 @@
 import axios from "axios";
 import { toLower } from "lodash";
 import { KeyboardEvent, useEffect, useState } from "react";
-import { ESearchCategories, ISearchResult } from "../../../../../types";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { $searchInput } from "../../../searchbar.state";
+import { ISearchResult } from "../../../../../types";
+import { useRecoilValue } from "recoil";
+import { $searchCategory, $searchInput } from "../../../searchbar.state";
 
 export const useSearchData = () => {
-  const [searchCategory, setSearchCategory] = useState<ESearchCategories>(
-    ESearchCategories.VCLIP
-  );
-
   const [searchResult, setSearchResult] = useState<ISearchResult[]>([]);
   const [isSearched, setIsSearched] = useState<boolean>(false);
 
   const searchInput = useRecoilValue($searchInput);
+  const searchCategory = useRecoilValue($searchCategory);
 
   // axios 인스턴스 생성
   const Kakao = axios.create({
@@ -50,11 +47,6 @@ export const useSearchData = () => {
     });
   };
 
-  // category state 저장
-  const handleCategoryChange = (category: ESearchCategories) => {
-    setSearchCategory(category);
-  };
-
   // 검색 완료했을 때 (submit)
   const handleSubmit = (e: KeyboardEvent) => {
     e.preventDefault();
@@ -70,7 +62,6 @@ export const useSearchData = () => {
 
   return {
     searchResult,
-    handleCategoryChange,
     isSearched,
     handleSubmit,
   };

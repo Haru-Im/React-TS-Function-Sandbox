@@ -7,19 +7,19 @@ import {
   TotalSearchListView,
   SearchBarView,
 } from "../views";
-import { useSearchData } from "./hooks";
-import { useSearchInput } from "./hooks/search-input";
+import { useSearchCategory, useSearchData, useSearchInput } from "./hooks";
+
 type ISearchContainerProps = {};
 
 export const SearchContainer: FC<ISearchContainerProps> = () => {
-  const { searchResult, handleCategoryChange, isSearched, handleSubmit } =
-    useSearchData();
+  const { searchResult, isSearched, handleSubmit } = useSearchData();
 
   const { debouncedSetSearchInput } = useSearchInput();
+  const { changeCategory } = useSearchCategory();
 
   return (
     <SearchLayout>
-      <HeaderView onChangeCategory={handleCategoryChange} />
+      <HeaderView onChangeCategory={changeCategory} />
       <TitleView />
       <SearchBarView
         handleSubmit={handleSubmit}
