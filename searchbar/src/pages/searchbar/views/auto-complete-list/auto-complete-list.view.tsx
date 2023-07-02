@@ -1,7 +1,7 @@
 import { FC, FormEvent, KeyboardEvent } from "react";
 import { ESearchCategories, ISearchResult } from "../../../../types";
 import { SearchBarComponent } from "../../components";
-import "./search-list.css";
+import "./auto-complete-list.css";
 
 type ISearchListViewProps = {
   searchResult: ISearchResult[];
