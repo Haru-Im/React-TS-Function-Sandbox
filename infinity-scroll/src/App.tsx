@@ -1,13 +1,13 @@
-import "./App.css";
-import { RecoilProvider } from "./provider/recoil";
+import { InfinityScrollPage } from "./pages";
+import { ReactQueryProvider } from "./provider";
 
 import { FC } from "react";
 type IAppProps = {};
 
 export const App: FC<IAppProps> = ({}) => {
   return (
-    <RecoilProvider>
-      <></>
-    </RecoilProvider>
+    <ReactQueryProvider>
+      <InfinityScrollPage />
+    </ReactQueryProvider>
   );
 };
