@@ -19,8 +19,6 @@ export const SearchBarView: FC<ISearchBarViewProps> = ({
 }) => {
   const test = useRecoilValue($autoCompleteWords);
 
-  console.log(test);
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
     onInputValueChange(text);
