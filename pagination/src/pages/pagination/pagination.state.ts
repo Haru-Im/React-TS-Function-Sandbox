@@ -21,8 +21,6 @@ export const $fetchData = selector<
     );
     const data = await response.json();
 
-    console.log(123, data);
-
     return data;
   },
 });
